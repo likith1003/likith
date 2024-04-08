@@ -3,6 +3,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from app.forms import *
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 # Create your views here.
 
 def registration(request):
@@ -20,6 +22,13 @@ def registration(request):
             MPFDO = PFDO.save(commit=False)
             MPFDO.username = MUFDO
             MPFDO.save()
+            send_mail(
+                "Registration",
+                "Registration is Successfull",
+                "likith.qsp@gmail.com",
+                [MUFDO.email],
+                fail_silently=False
+            )
             return render(request, 'user_login.html')
         else:
             return HttpResponse('Invalid Data')
@@ -44,6 +53,15 @@ def index(request):
         return render(request, 'home.html', d)
     return render(request, 'home.html')
 
+@login_required
 def  user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('Homepage'))
+
+@login_required
+def user_profile(request):
+    un = request.session.get('username')
+    uo = User.objects.get(username=un)
+    po = Profile.objects.get(username=uo)
+    d = {'uo':uo, 'po':po}
+    return render(request, 'user_profile.html', d)
