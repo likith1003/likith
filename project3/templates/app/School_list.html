@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <form  method="post">
+            
+            {% csrf_token %}
+            {% if schools|length %}
+            <table border="3px">
+                <tr>
+                    <th>slno</th>
+                    <th>School Name</th>
+                    <th>School Principal</th>
+                </tr>
+                
+                    {% for school in schools %}
+                    <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{school.sname}}</td>
+                    <td>{{school.sprincipal}}</td>
+                </tr>
+                    {% endfor %}
+                
+            </table>
+            {%else%}
+            <h1>No Schools Yet</h1>
+            {% endif %}
+            
+        </form>
+    </center>
+</body>
+</html>
