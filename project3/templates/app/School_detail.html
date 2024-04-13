@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <h1>This Is Display Page</h1>
+        <h1>The Name of the school is {{school.sname}}</h1>
+        <h1>The Name of the school principal is {{school.sprincipal}}</h1>
+        <h1>The Contact Number of the school is {{school.scontact}}</h1>
+        <table>
+            <tr>
+                <th>Student Name</th>
+                <th>Student Age</th>
+            </tr>
+            {% for student in school.students.all %}
+              <tr>
+                <td>{{student.stdname}}</td>
+                <td>{{student.stdage}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="update{{school.sname}}" class="btn btn-secondary"> Update School</a>
+    </center>
+</body>
+</html>

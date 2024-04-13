@@ -7,6 +7,6 @@ class School(models.Model):
     scontact = models.CharField(max_length=50)
 
 class Student(models.Model):
-    sname = models.ForeignKey(School,on_delete=models.CASCADE)
+    sname = models.ForeignKey(School,on_delete=models.CASCADE, related_name='students')
     stdname = models.CharField(max_length=50)
     stdage = models.IntegerField()

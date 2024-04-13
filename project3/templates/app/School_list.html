@@ -21,7 +21,7 @@
                     {% for school in schools %}
                     <tr>
                     <td>{{forloop.counter}}</td>
-                    <td>{{school.sname}}</td>
+                    <td><a href="display{{school.sname}}">{{school.sname}}</a></td>
                     <td>{{school.sprincipal}}</td>
                 </tr>
                     {% endfor %}

@@ -10,7 +10,11 @@
         <form  method="post">
             {% csrf_token %}
             {{form.as_p}}
-            <input type="submit" value="InsertSchool">
+            {% if school.pk %}
+              <input type="submit" value="UpdateSchool">
+              {% else %}
+              <input type="submit" value="InsertSchool">
+            {% endif %}
         </form>
     </center>
 </body>
